@@ -18,7 +18,7 @@
  *
  * Usage:
  *
- * > init(sz)
+ * > init(n)
  * - Init the array with `n` zero elements
  *
  * > update(pos, val)
@@ -35,7 +35,7 @@
  *
  * Remarks:
  *
- * - Note that `arr` can be an array of indices of values
+ * - Note that `arr` can be an array of indices or values
  *
  */
 
