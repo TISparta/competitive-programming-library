@@ -1,6 +1,6 @@
 /**
- * > Author : TISparta
- * > Date : 27-03-18
+ * > Author: TISparta
+ * > Date: 27-03-18
  *
  * FENWICK TREE (a.k.a BINARY INDEXED TREE (BIT))
  *
@@ -40,38 +40,39 @@
  */
 
 #include <bits/stdc++.h>
- 
+
+typedef long long ll;
+
 using namespace std;
 
-template <typename T>
 struct BIT {
-    int n;
-    vector <T> ft;
-    BIT() {}
+  int n;
+  vector <ll> ft;
+  BIT() {}
 
-    void init(const int n_) {
-        n = n_;
-        ft.resize(n, 0);
-    }
+  void init(const int n_) {
+    n = n_;
+    ft.resize(n, 0);
+  }
 
-    void update(int pos, const T& val) {
-        while (pos < n) {
-            ft[pos] += val;
-            pos += pos bitand -pos;
-        }
+  void update(int pos, const ll val) {
+    while (pos < n) {
+      ft[pos] += val;
+      pos += pos bitand -pos;
     }
+  }
 
-    T getLeftSum(int pos) {
-        T sum = 0;
-        while (pos) {
-            sum += ft[pos];
-            pos = pos bitand (pos - 1);
-        }
-        return sum;
+  ll getLeftSum(int pos) {
+    ll sum = 0;
+    while (pos) {
+      sum += ft[pos];
+      pos = pos bitand (pos - 1);
     }
+    return sum;
+  }
 
-    T getRightSum(int pos) {
-        return getLeftSum(n - 1) - getLeftSum(pos - 1);
-    }
+  ll getRightSum(int pos) {
+    return getLeftSum(n - 1) - getLeftSum(pos - 1);
+  }
  
 };
