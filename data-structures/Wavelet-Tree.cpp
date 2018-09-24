@@ -11,7 +11,7 @@
  * 
  * Complexity:
  *
- * > WaveletTree : O(sigma log sigma)
+ * > WaveletTree : O(n log n)
  * > ocurrences : O(log sigma)
  * > kth : O(log sigma)
  * > range : O(log sigma)
