@@ -2,7 +2,7 @@
  * > Author: TISparta
  * > Date: 05-10-18
  *
- * Lowest Commom Ancestor (LCA)
+ * LOWEST COMMOM ANCESTOR (LCA)
  *
  * Legend:
  *

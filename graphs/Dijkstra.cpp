@@ -15,7 +15,7 @@
  *
  * Usage:
  * > Dijkstra(s, dis)
- * Set dis[u] = Distance(s, u) for all u in V
+ * - Sets dis[u] = Distance(s, u) for all u in V
  *
  */
 
@@ -38,14 +38,13 @@ void Dijkstra (int s, vector <ll>& dis) {
   Q.insert({0LL, s});
   while (not Q.empty()) {
     pair <ll, int> q = *begin(Q);
-    ll d = q.first;
     int u = q.second;
     Q.erase(begin(Q));
-    if (d != dis[u]) continue;
-    for (int i = 0; i < G[u].size(); i++) {
+    for (int i = 0; i < int(G[u].size()); i++) {
       int v = G[u][i];
       ll w = W[u][i];
       if (dis[v] > dis[u] + w) {
+        Q.erase({dis[v], v});
         dis[v] = dis[u] + w;
         Q.insert({dis[v], v});
       }

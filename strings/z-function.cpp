@@ -1,6 +1,6 @@
 /**
- * Author: TISparta
- * Date: 25-07-18
+ * > Author: TISparta
+ * > Date: 25-07-18
  *
  * Z FUNCTION
  *
