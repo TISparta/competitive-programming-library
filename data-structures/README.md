@@ -3,7 +3,7 @@
 ### Fenwick Tree
 
 * [E-maxx - Fenwick Tree](https://cp-algorithms.com/data_structures/fenwick.html)
-* [Algorithms Live! - Episode 0 - Fenwick Trees](https://www.youtube.com/watch?v=kOfa6t8WnbI&t=1858s)
+* [Algorithms Live! - Episode 0 - Fenwick Trees](https://youtu.be/kOfa6t8WnbI)
 
 ### Wavelet Tree
 
