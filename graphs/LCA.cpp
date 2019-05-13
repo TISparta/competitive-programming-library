@@ -29,7 +29,7 @@ using namespace std;
 
 const int MAX_V = 1e5, LG = 18;
 
-int V, H[MAX_V], up[LG][MAX_V];
+int V, depth[MAX_V], up[LG][MAX_V];
 vector <int> G[MAX_V];
 
 void dfs (int u, int p = -1) {
@@ -40,7 +40,7 @@ void dfs (int u, int p = -1) {
   }
   for (int v: G[u]) {
     if (v != p) {
-      H[v] = H[u] + 1;
+      depth[v] = depth[u] + 1;
       up[0][v] = u;
       dfs(v, u);
     }
@@ -54,7 +54,8 @@ int walk (int u, int k) {
 }
 
 int getLCA (int u, int v) {
-  if (H[u] != H[v]) u = walk(u, H[u] - H[v]);
+  if (depth[u] > depth[v]) swap(u, v);
+  u = walk(u, depth[u] - depth[v]);
   if (u == v) return u;
   for (int bit = LG - 1; bit >= 0; bit--)
     if (up[bit][u] != up[bit][v])
