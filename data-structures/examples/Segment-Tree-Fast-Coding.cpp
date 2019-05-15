@@ -1,5 +1,7 @@
-// https://www.spoj.com/problems/HORRIBLE/
-// Time: 0.18
+// > Problem: https://www.spoj.com/problems/HORRIBLE/
+// > Author: TISparta
+// > Time: 0.18 seconds
+// > Date: 15-05-19
 
 #include <bits/stdc++.h>
 

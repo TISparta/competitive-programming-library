@@ -18,7 +18,7 @@
  * Usage:
  *
  * > STree(arr, l, r)
- * - Create a segment tree from the elements between `l` and `r` of `arr`
+ * - Create a segment tree from the elements in [l, r] of `arr`
  *
  * > update(L, R, val)
  * - Updates range [L, R]. `val` may change according to the problem
@@ -28,6 +28,7 @@
  *
  * Remarks:
  *
+ * - NIL must have this property: merge(x, NIL) = x
  * - Be carefully with initializations
  * - If time limit is too strict dont use this version (you should save your
  *   segment tree in array fixed size)
@@ -42,7 +43,7 @@ using namespace std;
 struct State {
   // DEFINE THE STATE
   State() {}
-} NIL;
+} NIL; // INIT NIL
 
 State merge (const State& x, const State& y) {
   State ret;
