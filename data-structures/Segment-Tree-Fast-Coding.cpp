@@ -7,7 +7,7 @@
  * Legend:
  * 
  * > arr : array with numbers
- * > n : max element of `arr`
+ * > n : number of elements of `arr`
  *
  * Complexity:
  *
@@ -30,8 +30,8 @@
  *
  * - NIL must have this property: merge(x, NIL) = x
  * - Be carefully with initializations
- * - If time limit is too strict dont use this version (you should save your
- *   segment tree in array fixed size)
+ * - If time limit is too strict dont use this version, prefer
+ *   Segment-Tree-Good-Perfomance.cpp
  * - It you dont need lazy propagation, just dont define the `push` function
  *
  */
@@ -42,7 +42,7 @@ using namespace std;
 
 struct State {
   // DEFINE THE STATE
-  State() {}
+  State () {}
 } NIL; // INIT NIL
 
 State merge (const State& x, const State& y) {
@@ -84,7 +84,7 @@ struct STree {
     push();
     if (r < L or R < l) return;
     if (L <= l and r <= R) {
-      // Lazy = SOMETHING
+      // lazy = SOMETHING
       push();
       return;
     }

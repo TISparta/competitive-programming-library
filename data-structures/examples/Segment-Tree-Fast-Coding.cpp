@@ -11,7 +11,7 @@ typedef long long ll;
 
 struct State {
   ll sum = 0;
-  State() {}
+  State () {}
   State (ll sum): sum(sum) {}
 } NIL(0LL);
 
