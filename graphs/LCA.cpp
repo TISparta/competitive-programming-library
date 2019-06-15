@@ -54,7 +54,7 @@ int walk (int u, int k) {
 }
 
 int getLCA (int u, int v) {
-  if (depth[u] > depth[v]) swap(u, v);
+  if (depth[u] < depth[v]) swap(u, v);
   u = walk(u, depth[u] - depth[v]);
   if (u == v) return u;
   for (int bit = LG - 1; bit >= 0; bit--)
