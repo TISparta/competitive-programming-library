@@ -8,7 +8,7 @@ namespace NT {
   }
 
   inline int add (int a, int b) {
-    int ret = (a + b) % mod;
+    int ret = a + b;
     if (ret >= mod) ret -= mod;
     return ret;
   }
