@@ -1,69 +1,55 @@
-/**
- * > Author: TISparta
- * > Date: 05-10-18
- *
- * LOWEST COMMOM ANCESTOR (LCA)
- *
- * Legend:
- *
- * > V: Number of vertices
- * > G: Tree adyacency list
- *
- * Complexity:
- *
- * > preprocess: O(V log V)
- * > getLCA: O(log V)
- *
- * Usage:
- * > preprocess (root)
- * - Run a dfs from root and build a sparse table
- *
- * > getLCA (u, v)
- * - Returns the lowest common ancestor of `u` and `v`
- *
- */
+struct LCA {
+  vector <vi> up;
+  vi depth;
+  const int LG = 18;
 
-#include <bits/stdc++.h>
-
-using namespace std;
-
-const int MAX_V = 1e5, LG = 18;
-
-int V, depth[MAX_V], up[LG][MAX_V];
-vector <int> G[MAX_V];
-
-void dfs (int u, int p = -1) {
-  for (int bit = 1; bit < LG; bit++) {
-    int v = up[bit - 1][u];
-    if (v == -1) break;
-    up[bit][u] = up[bit - 1][v];
+  LCA (const vector <vi>& g, int n) {
+    up = vector <vi> (n + 1, vi(LG, -1));
+    depth = vi(n + 1);
+    
+    function <void(int,int)> dfs = [&] (int u, int p) -> void {
+      depth[u] = (p == -1) ? 0 : depth[p] + 1;
+      for (int bit = 1; bit < LG; bit++) {
+        int v = up[u][bit - 1];
+        if (v == -1) break;
+        up[u][bit] = up[v][bit - 1];
+      }
+      for (auto v: g[u]) {
+        if (v == p) continue;
+        up[v][0] = u;
+        dfs(v, u);
+      }
+    };
+    
+    dfs(1, -1);
   }
-  for (int v: G[u]) {
-    if (v != p) {
-      depth[v] = depth[u] + 1;
-      up[0][v] = u;
-      dfs(v, u);
+
+  int walk (int u, int k) {
+    for (int bit = 0; bit < LG and k; bit++) {
+      if ((k >> bit) & 1) {
+        u = up[u][bit];
+        k -= (1 << bit);
+      }
     }
+    return u;
   }
-}
+  
+  int lca (int u, int v) {
+    if (depth[u] < depth[v]) swap(u, v);
+    u = walk(u, depth[u] - depth[v]);
+    if (u == v) return u;
+    for (int bit = LG - 1; bit >= 0; bit--) {
+      if (up[u][bit] != up[v][bit]) {
+        u = up[u][bit];
+        v = up[v][bit];
+      }
+    }
+    return up[u][0];
+  }
+  
+  int dis (int u, int v) {
+    int p = lca(u, v);
+    return depth[u] + depth[v] - 2 * depth[p];
+  }
+};
 
-int walk (int u, int k) {
-  for (int bit = LG - 1; bit >= 0; bit--)
-    if ((k >> bit) bitand 1) u = up[bit][u];
-  return u;
-}
-
-int getLCA (int u, int v) {
-  if (depth[u] < depth[v]) swap(u, v);
-  u = walk(u, depth[u] - depth[v]);
-  if (u == v) return u;
-  for (int bit = LG - 1; bit >= 0; bit--)
-    if (up[bit][u] != up[bit][v])
-      u = up[bit][u], v = up[bit][v];
-  return up[0][u];
-}
-
-void preprocess (int root) {
-  memset(up, -1, sizeof up);
-  dfs(root);
-}
