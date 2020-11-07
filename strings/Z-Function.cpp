@@ -1,27 +1,4 @@
-/**
- * > Author: TISparta
- * > Date: 25-07-18
- *
- * Z FUNCTION
- *
- * Complexity:
- *
- * > Zfunction: O(|s|)
- *
- * Usage:
- *
- * > Zfunction(s)
- * - Computes z, where
- * - z[0] = 0
- * - z[i] = max{k: s[0..(k-1)] = s[i...(i+k-1)]} 1 <= i < |s|
- *
- */
-
-#include <bits/stdc++.h>
-
-using namespace std;
-
-vector <int> Zfunction (const string s) {
+vector <int> Z_function (const string s) {
   int n = (int) s.size();
   vector <int> z(n);
   for (int i = 1, l = 0, r = 0; i < n; i++) {

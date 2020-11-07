@@ -1,36 +1,3 @@
-/**
- * > Author: TISparta
- * > Date: 23-09-18
- *
- * DIJKSTRA
- *
- * Legend:
- *
- * > V: Vertices
- * > E: Edges
- *
- * Complexity:
- *
- * > Dijkstra: O(E log V)
- *
- * Usage:
- * > Dijkstra(s, dis)
- * - Sets dis[u] = Distance(s, u) for all u in V
- *
- */
-
-#include <bits/stdc++.h>
-
-using namespace std;
-
-typedef long long ll;
-
-const int MAX_V = 5e4 + 10;
-const ll INF = 1e15;
-
-vector <int> G[MAX_V];
-vector <ll> W[MAX_V];
-
 void Dijkstra (int s, vector <ll>& dis) {
   fill(begin(dis), end(dis), INF);
   set <pair <ll, int>> Q;
