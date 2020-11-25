@@ -3,7 +3,7 @@ struct DSU {
   
   DSU (int n) {
     root.resize(n);
-    iota(all(n));
+    iota(all(root), 0);
   }
 
   int get (int u) {
@@ -11,8 +11,8 @@ struct DSU {
   }
 
   int join (int u, int v) {
-    u = root(u);
-    v = root(v);
+    u = get(u);
+    v = get(v);
     if (u == v) return 0;
     if (u < v) swap(u, v);
     root[u] = v;
