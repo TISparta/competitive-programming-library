@@ -1,5 +1,5 @@
 namespace NT {
-  int mod = 998244353;
+  int mod = 1e9 + 7;
   vi fact;
   vi inv_fact;
 
@@ -9,19 +9,29 @@ namespace NT {
     return a;
   }
 
+  inline bool is_ok (ll x) {
+    return (0 <= x and x < mod);
+  }
+
   inline int add (ll a, ll b) {
+    if (not is_ok(a)) a = norm(a);
+    if (not is_ok(b)) b = norm(b);
     ll ret = a + b;
     if (ret >= mod) ret -= mod;
     return ret;
   }
 
   inline int sub (ll a, ll b) {
+    if (not is_ok(a)) a = norm(a);
+    if (not is_ok(b)) b = norm(b);
     ll ret = a - b;
     if (ret < 0) ret += mod;
     return ret;
   }
 
   inline int mul (ll a, ll b) {
+    if (not is_ok(a)) a = norm(a);
+    if (not is_ok(b)) b = norm(b);
     return (a * b) % mod;
   }
 
