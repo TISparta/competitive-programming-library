@@ -1,5 +1,4 @@
 // Based on tourist template: https://codeforces.com/contest/1423/submission/94770723
-
 template <typename T>
 T inverse (T a, T m) {
   T u = 0, v = 1;
@@ -112,6 +111,10 @@ Modular <T, mod> power (Modular <T, mod> a, U b) {
   }
   return ret;
 }
+template <class T, T mod, class U, U umod>
+Modular <T, mod> power (Modular <T, mod> a, Modular <U, umod> b) { return power(a, b()); }
+template <class U, class T, T mod>
+Modular <T, mod> power (U a, Modular <T, mod> b) { return power(Modular <T, mod> (a), b()); }
 
 template <class T, T mod>
 std::ostream& operator << (std::ostream& stream, const Modular <T, mod>& number) { 
