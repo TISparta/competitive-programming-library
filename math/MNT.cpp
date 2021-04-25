@@ -1,7 +1,5 @@
 // Modular Number Theory
-template <class T, T mod>
 struct MNT {
-  using Mint = Modular <T, mod>;
   vector <Mint> fact;
   vector <Mint> inv_fact;
 

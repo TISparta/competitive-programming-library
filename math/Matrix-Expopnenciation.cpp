@@ -1,28 +1,30 @@
+template <class T>
 struct Matrix {
   int n;
-  vector <vi> mat;
+  vector <vector <T>> mat;
   Matrix () {};
-  Matrix (int n): n(n), mat(vector <vi> (n, vi (n, 0))) {}
+  Matrix (int n): n(n), mat(vector <vector <T>> (n, vector <T> (n, 0))) {}
 
-  void identity () { 
-    for (int i = 0; i < n; i++) mat[i][i] = 1;
+  void identity () {
+    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) mat[i][j] = (i == j);
   }
 
   void print () {
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
-        cout << mat[i][j] << " \n"[i == n - 1];
+        cout << mat[i][j] << " \n"[j + 1 == n];
       }
     }
   }
 
-  friend Matrix operator * (const Matrix& A, const Matrix& B) {
-    Matrix ret(A.n);
+  template <class R>
+  friend Matrix <R> operator * (const Matrix <R>& A, const Matrix <R>& B) {
+    Matrix <R> ret(A.n);
     for (int i = 0; i < A.n; i++) {
       for (int j = 0; j < A.n; j++) {
-        int ret_i = 0;
+        R ret_i = 0;
         for (int k = 0; k < A.n; k++) {
-          ret_i = NT::add(ret_i, NT::mul(A.mat[i][k], B.mat[k][j]));
+          ret_i += A.mat[i][k] * B.mat[k][j];
         }
         ret.mat[i][j] = ret_i;
       }
@@ -30,8 +32,10 @@ struct Matrix {
     return ret;
   }
 
-  static Matrix bin_pow (Matrix A, ll b) {
-    Matrix ret(A.n);
+  template <typename R>
+  friend Matrix <R> power (Matrix <R> A, ll b) {
+    assert(b >= 0);
+    Matrix <R> ret(A.n);
     ret.identity();
     while (b) {
       if (b & 1) ret = ret * A;
@@ -41,12 +45,6 @@ struct Matrix {
     return ret;
   }
 
-  const int operator () (int r, int c) const {
-    return mat[r][c];
-  }
-
-  int& operator () (int r, int c) {
-    return mat[r][c];
-  }
+  vector <T>& operator [] (int r) { return mat[r]; }
 
 };
