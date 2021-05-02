@@ -1,13 +1,14 @@
+template <typename T>
 struct STable {
   const int LG = 20;
-  vector <vi> st;
+  vector <vector <T>> st;
   
-  inline int op (int x, int y) {
-    // TODO operation
+  inline T op (T x, T y) {
+    return min(x, y);
   }
 
-  STable (int l, int r, const vi& arr) {
-    st = vector <vi> (r + 1, vi(LG));
+  STable (int l, int r, const vector <T>& arr) {
+    st = vector <vector <T>> (r + 1, vector <T> (LG));
     for (int i = l; i <= r; i++) {
       st[i][0] = arr[i];
     }
@@ -19,7 +20,7 @@ struct STable {
     }
   }
 
-  int query (int l, int r) {
+  T query (int l, int r) {
     if (l == r) return st[l][0];
     int x = 31 - __builtin_clz(r - l);
     int l2 = r - (1 << x) + 1;
