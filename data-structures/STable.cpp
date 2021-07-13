@@ -1,4 +1,4 @@
-template <typename T>
+template <typename T = int>
 struct STable {
   const int LG = 20;
   vector <vector <T>> st;

@@ -1,3 +1,4 @@
+// Example: https://codeforces.com/contest/161/submission/95434753
 struct CD {
   vi pa;
 
@@ -23,10 +24,15 @@ struct CD {
       return c;
     };
 
+    auto solve = [&] (int u) {
+      // TODO
+    }
+
     function <void(int,int,int)> decomposition = [&] (int u, int p, int n) -> void {
       int c = find_centroid(u, p, n);
       pa[c] = p;
       blocked[c] = true;
+      solve(c);
       if (father[c] != -1) ss[father[c]] = n - ss[c];
       for (auto v: g[c]) {
         if (v == p or blocked[v]) continue;

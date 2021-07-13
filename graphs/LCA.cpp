@@ -3,7 +3,7 @@ struct LCA {
   vi depth;
   const int LG = 18;
 
-  LCA (const vector <vi>& g, int n) {
+  LCA (const vector <vi>& g, int n, int root) {
     up = vector <vi> (n + 1, vi(LG, -1));
     depth = vi(n + 1);
     
@@ -21,7 +21,7 @@ struct LCA {
       }
     };
     
-    dfs(1, -1);
+    dfs(root, -1);
   }
 
   int walk (int u, int k) {
