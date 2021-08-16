@@ -4,8 +4,10 @@
 #define rall(A) rbegin(A), rend(A)
 #define sz(A) int(A.size())
 #define pb push_back
+#define eb emplace_back
 #define mp make_pair
-     
+#define mt make_tuple
+
 using namespace std;
      
 typedef long long ll;
